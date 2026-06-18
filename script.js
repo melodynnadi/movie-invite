@@ -7,7 +7,6 @@ const messageText = document.querySelector("#messageText");
 const yesButton = document.querySelector("#yesButton");
 const noButton = document.querySelector("#noButton");
 const statusText = document.querySelector("#statusText");
-const copyButton = document.querySelector("#copyButton");
 const calendarButton = document.querySelector("#calendarButton");
 const confetti = document.querySelector("#confetti");
 
@@ -83,22 +82,6 @@ function celebrate() {
   }
 }
 
-async function copyInvite() {
-  updateMessage();
-  try {
-    await navigator.clipboard.writeText(messageText.value);
-    copyButton.textContent = "Copied";
-  } catch (error) {
-    messageText.focus();
-    messageText.select();
-    document.execCommand("copy");
-    copyButton.textContent = "Selected";
-  }
-  setTimeout(() => {
-    copyButton.textContent = "Copy text";
-  }, 1300);
-}
-
 function toIcsDate(date) {
   return date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
 }
@@ -149,5 +132,4 @@ nextButtons.forEach((button) => {
 dateTimeInput.addEventListener("change", updateMessage);
 yesButton.addEventListener("click", celebrate);
 noButton.addEventListener("click", handleNo);
-copyButton.addEventListener("click", copyInvite);
 calendarButton.addEventListener("click", downloadReminder);
