@@ -11,16 +11,7 @@ const copyButton = document.querySelector("#copyButton");
 const calendarButton = document.querySelector("#calendarButton");
 const confetti = document.querySelector("#confetti");
 
-const noLines = [
-  "No tried to leave, but the apology was too sincere.",
-  "It moved because even it knows tonight deserves a redo.",
-  "Counteroffer: yes, but you get to roast me once.",
-  "No is now reviewing its life choices.",
-  "Final answer unlocked: yes."
-];
-
 let activeScreen = 0;
-let noAttempts = 0;
 
 function pad(value) {
   return String(value).padStart(2, "0");
@@ -73,25 +64,8 @@ function updateMessage() {
   messageText.value = buildMessage();
 }
 
-function moveNoButton() {
-  noAttempts += 1;
-  const maxX = Math.max(12, window.innerWidth - noButton.offsetWidth - 16);
-  const maxY = Math.max(64, window.innerHeight - noButton.offsetHeight - 24);
-  const x = Math.floor(Math.random() * maxX);
-  const y = Math.floor(58 + Math.random() * (maxY - 58));
-  const scale = Math.max(0.58, 1 - noAttempts * 0.08);
-
-  noButton.classList.add("is-running");
-  noButton.style.left = `${x}px`;
-  noButton.style.top = `${y}px`;
-  noButton.style.transform = `scale(${scale}) rotate(${noAttempts % 2 ? -5 : 5}deg)`;
-  statusText.textContent = noLines[Math.min(noAttempts - 1, noLines.length - 1)];
-
-  if (noAttempts >= noLines.length) {
-    noButton.classList.remove("secondary", "no");
-    noButton.classList.add("primary");
-    noButton.textContent = "Fine... yes";
-  }
+function handleNo() {
+  statusText.style.display = "block";
 }
 
 function celebrate() {
@@ -174,13 +148,6 @@ nextButtons.forEach((button) => {
 
 dateTimeInput.addEventListener("change", updateMessage);
 yesButton.addEventListener("click", celebrate);
-noButton.addEventListener("pointerenter", moveNoButton);
-noButton.addEventListener("click", () => {
-  if (noAttempts >= noLines.length) {
-    celebrate();
-  } else {
-    moveNoButton();
-  }
-});
+noButton.addEventListener("click", handleNo);
 copyButton.addEventListener("click", copyInvite);
 calendarButton.addEventListener("click", downloadReminder);
