@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toni Stark, I Owe You a Movie Date</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app" aria-live="polite">
+      <img class="backdrop" src="assets/movie-night.png" alt="" />
+      <div class="shade"></div>
+
+      <div class="progress" aria-hidden="true">
+        <span class="dot is-active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+
+      <section class="screen is-active" data-screen="0" aria-labelledby="apology-title">
+        <div class="card">
+          <p class="eyebrow">A tiny apology</p>
+          <h1 id="apology-title">Toni Stark, I'm sorry.</h1>
+          <p>
+            I was supposed to watch a movie with you last night and I fell asleep early.
+            That was very unthoughtful of me.
+          </p>
+          <button class="primary" type="button" data-next>Keep reading</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="1" aria-labelledby="makeup-title">
+        <div class="card">
+          <p class="eyebrow">My request</p>
+          <h2 id="makeup-title">Let me make it up tonight.</h2>
+          <p>
+            FaceTime. Cozy movie energy. No sleeping. Just you, me, and Jojo Rabbit.
+          </p>
+          <button class="primary" type="button" data-next>What's the movie?</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="2" aria-labelledby="movie-title">
+        <div class="card movie-card">
+          <p class="eyebrow">Tonight's pick</p>
+          <h2 id="movie-title">Jojo Rabbit</h2>
+          <p>
+            You sent it to me on Instagram months ago, If you no longer wanna watch it, thats fine.
+          </p>
+          <div class="mini-plan">
+            <span>FaceTime</span>
+            <span>Press play together</span>
+            <span>I stay awake</span>
+          </div>
+          <button class="primary" type="button" data-next>Continue...</button>
+        </div>
+      </section>
+
+      <section class="screen choice-screen" data-screen="3" aria-labelledby="question-title">
+        <div class="card">
+          <p class="eyebrow">Official question</p>
+          <h2 id="question-title">Movie date tonight?</h2>
+          <p>
+            I'll call, I'll be present, I'll ask you questions so we are connected.
+          </p>
+          <div class="choice-pad" id="choicePad">
+            <button class="primary yes" id="yesButton" type="button">Yes, redeem yourself</button>
+            <button class="secondary no" id="noButton" type="button">No</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="4" aria-labelledby="done-title">
+        <div class="card final-card">
+          <p class="eyebrow">Redemption arc scheduled</p>
+          <h2 id="done-title">It's a date.</h2>
+          <p>
+            Pick the reminder time, then send the message. I'll FaceTime you and we'll
+            watch Jojo Rabbit together.
+          </p>
+
+          <label class="time-field" for="dateTime">
+            <span>Reminder time</span>
+            <input id="dateTime" type="datetime-local" />
+          </label>
+
+          <textarea id="messageText" readonly></textarea>
+
+          <div class="share-actions">
+            <button class="secondary" id="calendarButton" type="button">DownloadReminder</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
