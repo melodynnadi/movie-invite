@@ -254,8 +254,8 @@ textarea {
 }
 
 .share-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: center;
   gap: 10px;
 }
 
